@@ -1,5 +1,5 @@
-### 🚀 About Me 
-Hi, there. I'm a data analyst passionate about helping businesses make sense of their data. I realy like how data points can help businesess make the fact-based decisions not just from the gut.
+### Hi, There, Wellcome 😙
+I'm a data analyst passionate about helping businesses make sense of their data. I realy like how data points can help businesess make the fact-based decisions not just from the gut.
 
 When I'm not working with data, I enjoy [Reading books, watching documentries, playing football, workout.].
 
