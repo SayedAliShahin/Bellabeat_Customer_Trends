@@ -47,7 +47,8 @@ An interactive Tableau dashboard used to report and explore sales trends can be 
 ## 🔎 Insights Deep Dive
 ### Activity & Intensity Patterns
 
-* **1. The Mid-Day Peak.** Physical intensity and step counts surge consistently between 12:00 PM and 6:00 PM across the entire user base, making the afternoon the dominant active window of the day. In contrast, the morning window (6:00–10:00 AM) registers the lowest activity levels — a significant and consistent gap that represents a daily missed opportunity for engagement.
+* **1. The Mid-Day Peak.** Physical intensity and step counts surge consistently between 12:00 PM and 7:00 PM across the entire user base, making the afternoon the dominant active window of the day. In contrast, the morning window (6:00–10:00 AM) registers the lowest activity levels - a significant and consistent gap that represents a daily missed opportunity for engagement.
+![image alt](https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/Viz/Peak_Huors.PNG)
 
 * **2. The Burnout Drop-Off.** Device engagement and data logging show a noticeable decline toward the final week of the tracked month (late April – May 12, 2016). This pattern suggests users experience a "burnout" or "forgetfulness" phase in long-term device usage — a retention risk that directly impacts the quality and consistency of health data collected.
 Weekday vs. Weekend Variance. Activity levels are measurably more consistent across Monday–Friday, while Saturday and Sunday show high behavioral variance — users are either significantly more active or considerably more sedentary. This unpredictability on weekends signals an opportunity for targeted weekend wellness prompts.
