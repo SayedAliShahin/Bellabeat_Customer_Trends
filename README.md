@@ -21,7 +21,7 @@ The SQL queries used to inspect and clean the data for this analysis can be foun
 
 Targed SQL queries regarding various business questions can be found here [link].
 
-An interactive Tableau dashboard used to report and explore sales trends can be found here [link].
+
 
 
 
@@ -41,7 +41,7 @@ The dataset consists of 18 CSV files imported into BigQuery as structured tables
 ### Overview of Findings
 Analysis of 33 Fitbit users over 31 days reveals three critical behavioral gaps that Bellabeat can directly address through smarter marketing. First, users are largely inactive during the morning window (6–10 AM) and struggle with pre-sleep wakefulness - averaging 38 minutes awake in bed - pointing to unmet demand for guided wellness routines. Second, 24.2% of users are sedentary, yet the "Fairly Active" segment shows the strongest growth potential, needing only small behavioral nudges to level up. Third, manual data entry is a major friction point - only 8 of 33 users logged weight - suggesting Bellabeat should lead with automation and push proactive, personalized insights rather than passive tracking.
 
-[Visualization, including a graph of overall trends or snapshot of a dashboard]
+An interactive Tableau dashboard used to report and explore sales trends can be found here [https://public.tableau.com/authoring/Bellabeat_17787334776370/Dashboard1#1].
 
 
 ## 🔎 Insights Deep Dive
