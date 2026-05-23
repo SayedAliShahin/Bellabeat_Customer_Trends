@@ -52,7 +52,7 @@ An interactive Tableau dashboard used to report and explore sales trends can be 
 * **2. The Burnout Drop-Off.** Device engagement and data logging show a noticeable decline toward the final week of the tracked month (late April – May 12, 2016). This pattern suggests users experience a "burnout" or "forgetfulness" phase in long-term device usage — a retention risk that directly impacts the quality and consistency of health data collected.
 Weekday vs. Weekend Variance. Activity levels are measurably more consistent across Monday–Friday, while Saturday and Sunday show high behavioral variance — users are either significantly more active or considerably more sedentary. This unpredictability on weekends signals an opportunity for targeted weekend wellness prompts.
 
-[Visualization specific to category 1]
+![image alt](https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/Viz/Peak_Days.PNG)
 
 
 ### Sleep Quality
