@@ -73,7 +73,7 @@ Weekday vs. Weekend Variance. Activity levels are measurably more consistent acr
 
 * **2. The Fairly Active Opportunity.** Users averaging between 7,500–10,000 steps/day (the "Fairly Active" segment) represent the single largest growth opportunity. These users are already engaged, already tracking data, and are the closest to reaching higher health benchmarks — making them the ideal audience for behavioral nudge campaigns and premium membership upsells.
   
-[Visualization specific to category 3]
+![image alt](https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/Viz/User_segmentation.PNG)
 
 ### Weight Logging Friction
 
