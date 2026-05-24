@@ -60,7 +60,10 @@ Weekday vs. Weekend Variance. Activity levels are measurably more consistent acr
 
 * **1. The Awake-in-Bed Gap.** Across 24 users who logged sleep data, the average time spent awake in bed before falling asleep was 38 minutes — calculated as the difference between TotalTimeInBed and TotalMinutesAsleep. This is a strong signal of difficulty winding down, and represents a direct, addressable pain point for Bellabeat's app and membership features.
 
+![image alt](https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/Viz/Sleep_Quality.PNG)
+
 * **2. Activity Does Not Guarantee Sleep.** A JOIN analysis between daily_activity and sleep_day tables revealed only a weak positive correlation between daily calorie expenditure and total sleep duration. Users who burned more calories did not consistently sleep longer — meaning physical effort alone is not solving users' sleep quality issues, and a dedicated sleep-support feature would add real value.
+
 ![image alt](https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/Viz/Sleep_Calory.PNG)
 
 
