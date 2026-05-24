@@ -17,14 +17,14 @@ Insights and recommendations are provided on the following key areas:
 - **User Segmentation** 
 - **Weight Logging Friction** 
 
-The SQL queries used to inspect, clean and analyse the data can be found here [link].
+The SQL queries used to inspect, clean and analyse the data can be found here [https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/SQL_Queries.txt].
 
 
 
 ## 🛢️ Data Structure
 
 The dataset consists of 18 CSV files imported into BigQuery as structured tables. The core tables used in this analysis are 5 tables with a combined scope of 33 users tracked over 31 days. A description of each table is as follows:
-- **daily_activity:** Daily summaries per user including total steps, distance travelled, and calories burned. Primary table used for overall activity trends and user segmentation.
+- **daily_activity:** Daily summaris including total steps, distance travelled, and calories burned. Primary table used for overall activity trends and user segmentation.
 - **sleep_day:** Logs of total minutes asleep and total time spent in bed per user per night. Used to calculate the "awake-in-bed" metric and analyze sleep quality.
 - **intensity_hourly:** Hour-by-hour intensity levels across the day. Used to identify peak activity windows and the mid-morning low-activity pattern.
 - **steps_daily:** Daily step counts per user. Used to compute averages and classify users into activity segments (Sedentary, Lightly Active, Fairly Active, Very Active).
