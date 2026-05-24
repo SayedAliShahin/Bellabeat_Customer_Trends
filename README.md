@@ -3,7 +3,7 @@
 
 
 
-## 🏢 Client Background
+## 🏢 Bellabeat Background
 **Bellabeat** is a high-tech manufacturer of health-focused smart products for women, founded by Urška Sršen (artist & CCO) and Sando Mur (mathematician & co-founder). Sršen's design background drives the company's philosophy: build beautifully designed technology that informs and inspires women through data on activity, sleep, stress, and reproductive health.
 Since 2013, Bellabeat has grown rapidly into a tech-driven wellness brand with a global office presence and a product suite that includes the Bellabeat App, Leaf wellness tracker, Time smartwatch, and a membership program — all designed to empower women with knowledge about their own health and habits.
 The company runs an active multi-channel marketing presence across Google Search, Instagram, Facebook, YouTube, and traditional media.
