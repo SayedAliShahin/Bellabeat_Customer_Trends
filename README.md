@@ -17,11 +17,7 @@ Insights and recommendations are provided on the following key areas:
 - **User Segmentation** 
 - **Weight Logging Friction** 
 
-The SQL queries used to inspect and clean the data for this analysis can be found here [link].
-
-Targed SQL queries regarding various business questions can be found here [link].
-
-
+The SQL queries used to inspect, clean and analyse the data can be found here [link].
 
 
 
