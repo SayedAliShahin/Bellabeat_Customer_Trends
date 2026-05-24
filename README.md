@@ -41,6 +41,7 @@ The dataset consists of 18 CSV files imported into BigQuery as structured tables
 ### Overview of Findings
 Analysis of 33 Fitbit users over 31 days reveals three critical behavioral gaps that Bellabeat can directly address through smarter marketing. First, users are more stable acitve during the weekdays and it flactuates and raise up on weekends(Saturday), enabling Bellabear to align marketing accordingly. Second, users are largely inactive during the morning window (6–10 AM) and struggle with pre-sleep wakefulness - averaging 38 minutes awake in bed - pointing to unmet demand for guided wellness routines. Third, 24.2% of users are sedentary, yet the "Fairly Active" segment shows the strongest growth potential, needing only small behavioral nudges to level up. Forth, manual data entry is a major friction point - only 8 of 33 users logged weight - suggesting Bellabeat should lead with automation and push proactive, personalized insights rather than passive tracking.
 
+![image alt](https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/Viz/Peak_Days.PNG))
 An interactive Tableau dashboard used to report and explore sales trends can be found here [https://public.tableau.com/authoring/Bellabeat_17787334776370/Dashboard1#1].
 
 
@@ -53,7 +54,6 @@ An interactive Tableau dashboard used to report and explore sales trends can be 
 (* **2. The Burnout Drop-Off.** Device engagement and data logging show a noticeable decline toward the final week of the tracked month (late April – May 12, 2016). This pattern suggests users experience a "burnout" or "forgetfulness" phase in long-term device usage — a retention risk that directly impacts the quality and consistency of health data collected.
 Weekday vs. Weekend Variance. Activity levels are measurably more consistent across Monday–Friday, while Saturday and Sunday show high behavioral variance — users are either significantly more active or considerably more sedentary. This unpredictability on weekends signals an opportunity for targeted weekend wellness prompts.
 
-![image alt](https://github.com/SayedAliShahin/Bellabeat_Customer_Trends/blob/main/Viz/Peak_Days.PNG))
 
 
 ### Sleep Quality
