@@ -1,0 +1,177 @@
+/*
+================================================================================
+Bellabeat Data Analysis Project
+Description: End-to-end SQL script for the Bellabeat Case Study.
+Includes: Data Cleaning, Activity Analysis, Sleep Trends and Correlation Studies.
+================================================================================
+*/
+-- SECTION 0: DATA CLEANING & PREPARATION
+-------------------------------------------
+
+-- 0.1: Check for duplicate rows in key tables
+-- Example: daily_activity
+SELECT Id, ActivityDate, COUNT(*)
+FROM `bellabeat-496002.bellabeat.daily_activity`
+GROUP BY Id, ActivityDate
+HAVING COUNT(*) > 1;
+
+-- 0.2: Remove duplicates (if any) and save to clean tables
+-- Using sleep_day as it commonly has duplicates in this dataset
+CREATE OR REPLACE TABLE `bellabeat-496002.bellabeat.sleep_day_cleaned` AS
+SELECT DISTINCT *
+FROM `bellabeat-496002.bellabeat.sleep_day`;
+
+-- 0.3: Check for NULL values in critical columns
+SELECT 
+  COUNTIF(Id IS NULL) AS null_ids,
+  COUNTIF(ActivityDate IS NULL) AS null_dates,
+  COUNTIF(TotalSteps IS NULL) AS null_steps
+FROM `bellabeat-496002.bellabeat.daily_activity`;
+
+-- 0.4: Standardize Date Formats (Ensuring they are DATE types)
+-- This is critical for JOINs and FORMAT_DATE functions used later
+/* 
+Note: If your dates are strings, use PARSE_DATE('%m/%d/%Y', ActivityDate) 
+or SAFE_CAST(ActivityDate AS DATE). 
+The following analysis assumes columns are already in DATE format.
+*/
+
+
+-- SECTION 1: ACTIVITY ANALYSIS
+-----------------------------------------
+
+-- 1.1: Which days are users most active? (Weekly Trends)
+SELECT
+  FORMAT_DATE('%A', date) AS day_of_week,
+  ROUND(AVG(Calories), 2) AS avg_calories
+FROM `bellabeat-496002.bellabeat.daily_activity`
+GROUP BY day_of_week, EXTRACT(DAYOFWEEK FROM date)
+ORDER BY EXTRACT(DAYOFWEEK FROM date);
+-- Insight: Saturday is the peak activity day.
+
+
+-- 1.2: What are the most active hours of the day? (Daily Trends)
+SELECT 
+    Time, 
+    ROUND(AVG(TotalIntensity), 2) AS avg_intensity
+FROM `bellabeat-496002.bellabeat.intensity_hourly`
+GROUP BY Time
+ORDER BY avg_intensity DESC;
+-- Insight: 12 PM to 6 PM are the most active hours.
+
+
+-- 1.3: Deep Dive: Most active hours on Saturday
+SELECT
+    Time,
+    ROUND(AVG(TotalIntensity), 2) AS avg_intensity
+FROM `bellabeat-496002.bellabeat.intensity_hourly`
+WHERE FORMAT_DATE('%A', Date) = 'Saturday'
+GROUP BY Time
+HAVING avg_intensity > 20
+ORDER BY avg_intensity DESC
+LIMIT 5;
+
+
+-- SECTION 2: SLEEP & ACTIVITY RELATIONSHIPS
+--------------------------------------------
+
+-- 2.1: Direct comparison of activity and sleep metrics
+SELECT
+    a.Id,
+    a.date,
+    a.Calories,
+    s.TotalMinutesAsleep,
+    s.TotalTimeInBed
+FROM `bellabeat-496002.bellabeat.daily_activity` AS a
+INNER JOIN `bellabeat-496002.bellabeat.sleep_day_cleaned` AS s
+    ON a.Id = s.Id AND a.date = s.date
+ORDER BY a.Calories DESC;
+
+
+-- 2.2: User Segmentation: Activity Level vs. Sleep Quality
+WITH daily_metrics AS (
+    SELECT
+        s.Id,
+        s.date,
+        st.StepTotal,
+        s.TotalMinutesAsleep,
+        (s.TotalTimeInBed - s.TotalMinutesAsleep) AS minutes_awake_in_bed
+    FROM `bellabeat-496002.bellabeat.sleep_day_cleaned` AS s
+    INNER JOIN `bellabeat-496002.bellabeat.steps_daily` AS st
+        ON s.Id = st.Id AND s.date = st.ActivityDay
+),
+user_averages AS (
+    SELECT
+        Id,
+        AVG(StepTotal) AS avg_daily_steps,
+        AVG(TotalMinutesAsleep) AS avg_min_asleep,
+        AVG(minutes_awake_in_bed) AS avg_min_awake_in_bed
+    FROM daily_metrics
+    GROUP BY Id
+),
+user_segmentation AS (
+    SELECT
+        *,
+        CASE
+            WHEN avg_daily_steps >= 10000 THEN 'Very Active (10k+ steps)'
+            WHEN avg_daily_steps BETWEEN 7500 AND 9999 THEN 'Fairly Active (7.5k-10k)'
+            WHEN avg_daily_steps BETWEEN 5000 AND 7499 THEN 'Lightly Active (5k-7.5k)'
+            ELSE 'Sedentary (<5k steps)'
+        END AS activity_category
+    FROM user_averages
+)
+SELECT
+    activity_category,
+    COUNT(Id) AS user_count,
+    ROUND(AVG(avg_daily_steps), 0) AS group_avg_steps,
+    ROUND(AVG(avg_min_asleep) / 60, 2) AS group_avg_sleep_hours,
+    ROUND(AVG(avg_min_awake_in_bed), 2) AS group_avg_minutes_awake_in_bed
+FROM user_segmentation
+GROUP BY activity_category
+ORDER BY group_avg_steps DESC;
+
+
+-- SECTION 3: PHYSICAL METRICS & ENGAGEMENT
+-------------------------------------------
+
+-- 3.1: Intensity Correlation with Weight and BMI
+SELECT
+    a.Id,
+    ROUND(AVG(a.Calories), 2) AS avg_daily_calories,
+    ROUND(AVG(w.WeightKg), 2) AS avg_weight_kg,
+    ROUND(AVG(w.BMI), 2) AS avg_bmi,
+    COUNT(DISTINCT w.date) AS weight_log_count
+FROM `bellabeat-496002.bellabeat.daily_activity` AS a
+INNER JOIN `bellabeat-496002.bellabeat.weight_fat_log_info` AS w
+    ON a.Id = w.Id
+GROUP BY a.Id
+ORDER BY avg_daily_calories DESC;
+
+
+-- 3.2: Usage Trends: Engagement over time
+SELECT
+  date,
+  COUNT(DISTINCT Id) AS active_users,
+  ROUND(AVG(Calories), 2) AS avg_calories_burned
+FROM `bellabeat-496002.bellabeat.daily_activity`
+GROUP BY date
+ORDER BY date ASC;
+
+
+-- 3.3: Inactive User Percentage
+WITH user_averages AS (
+    SELECT Id, AVG(StepTotal) AS avg_steps
+    FROM `bellabeat-496002.bellabeat.steps_daily`
+    GROUP BY Id
+),
+user_counts AS (
+    SELECT 
+        COUNT(*) AS total_users, 
+        COUNTIF(avg_steps < 5000) AS inactive_users
+    FROM user_averages
+)
+SELECT
+  total_users,
+  inactive_users,
+  ROUND((inactive_users / total_users) * 100, 2) AS percent_inactive
+FROM user_counts;
